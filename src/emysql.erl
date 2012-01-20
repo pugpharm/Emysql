@@ -100,6 +100,7 @@
 			prepare/2,
 			execute/2, execute/3, execute/4, execute/5,
 			default_timeout/0,
+   monitor_work/3,
 			modules/0	
 		]).
 
@@ -525,9 +526,6 @@ execute(PoolId, StmtName, Args, Timeout, nonblocking) when is_atom(StmtName), is
 			Other
 	end.
 
-%%--------------------------------------------------------------------
-%%% Internal functions
-%%--------------------------------------------------------------------
 %% @spec monitor_work(Connection, Timeout, {M, F, A}) -> Result | exit()
 %%		PoolId = atom()
 %%		Query = binary() | string()
@@ -552,7 +550,6 @@ execute(PoolId, StmtName, Args, Timeout, nonblocking) when is_atom(StmtName), is
 %% @see execute/5.
 %% @see prepare/2.
 %% 
-%% @private 
 %% @end doc: hd feb 11
 %%
 monitor_work(Connection, Timeout, {M,F,A}) when is_record(Connection, emysql_connection) ->
